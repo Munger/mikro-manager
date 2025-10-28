@@ -14,7 +14,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mikro-common",
-    version="0.1.0",
+    version="0.1.1",
     description="Shared library for MikroTik RouterOS API access",
     author="Tim Hosking",
     packages=find_packages(),
