@@ -5,6 +5,7 @@ setup.py
   MikroTik management tools
 
 Copyright (c) 2025 Tim Hosking
+Email: tim@mungerware.com
 Website: https://github.com/munger
 Licence: MIT
 """
@@ -13,7 +14,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mikro-dns",
-    version="0.1.0",
+    version="0.1.1",
     description="DNS static entry management for MikroTik routers",
     author="Tim Hosking",
     packages=find_packages(),

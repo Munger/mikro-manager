@@ -5,4 +5,4 @@ mikro-common (0.1.0-1) noble; urgency=medium
   * Configuration file management
   * Support for all DNS record types
 
- -- Tim Hosking <tim@example.com>  Sat, 25 Oct 2025 15:00:00 +0100
+ -- Tim Hosking <tim@mungerware.com>  Sat, 25 Oct 2025 15:00:00 +0100

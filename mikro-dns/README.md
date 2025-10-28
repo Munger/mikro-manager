@@ -1,12 +1,11 @@
 <!--
-README.md : MikroTik router management tools documentation
+README.md : MikroTik management tools
 
 Copyright (c) 2025 Tim Hosking
+Email: tim@mungerware.com
 Website: https://github.com/munger
 Licence: MIT
 -->
-
-# Mikro DNS
 
 DNS static entry management for MikroTik routers via the RouterOS API.
 

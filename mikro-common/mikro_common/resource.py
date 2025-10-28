@@ -2,9 +2,10 @@
 """
 resource.py
 
-Base resource manager for MikroTik resources
+  MikroTik management tools
 
 Copyright (c) 2025 Tim Hosking
+Email: tim@mungerware.com
 Website: https://github.com/munger
 Licence: MIT
 """

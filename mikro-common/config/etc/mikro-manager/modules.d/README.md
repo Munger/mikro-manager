@@ -2,11 +2,10 @@
 README.md : MikroTik management tools
 
 Copyright (c) 2025 Tim Hosking
+Email: tim@mungerware.com
 Website: https://github.com/munger
 Licence: MIT
 -->
-
-# Module Definitions
 
 Module definition files go here. Each module defines the permissions and operations available for a specific MikroTik management area.
 

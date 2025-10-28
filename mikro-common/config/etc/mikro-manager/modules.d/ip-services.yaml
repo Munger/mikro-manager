@@ -1,11 +1,3 @@
-#
-# ip-services.yaml : MikroTik management tools
-#
-# Copyright (c) 2025 Tim Hosking
-# Website: https://github.com/munger
-# Licence: MIT
-#
-
 module:
   name: ip-services
   description: IP Services (DNS, NTP, etc.)
