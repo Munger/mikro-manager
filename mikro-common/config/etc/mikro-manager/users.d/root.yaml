@@ -1,3 +1,11 @@
+#
+# root.yaml : MikroTik management tools
+#
+# Copyright (c) 2025 Tim Hosking
+# Website: https://github.com/munger
+# Licence: MIT
+#
+
 # Default root user with full administrative access
 # DO NOT REMOVE THIS FILE
 

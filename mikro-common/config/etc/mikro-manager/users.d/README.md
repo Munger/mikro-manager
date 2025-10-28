@@ -1,3 +1,11 @@
+<!--
+README.md : MikroTik management tools
+
+Copyright (c) 2025 Tim Hosking
+Website: https://github.com/munger
+Licence: MIT
+-->
+
 # User Permissions Directory
 
 This directory contains user permission definitions for mikro-manager.

@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+"""
+setup.py
+
+  MikroTik management tools
+
+Copyright (c) 2025 Tim Hosking
+Website: https://github.com/munger
+Licence: MIT
+"""
+
 from setuptools import setup, find_packages
 
 setup(

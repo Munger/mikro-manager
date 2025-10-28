@@ -1,3 +1,11 @@
+#
+# monitor.yaml : MikroTik management tools
+#
+# Copyright (c) 2025 Tim Hosking
+# Website: https://github.com/munger
+# Licence: MIT
+#
+
 # Monitoring group (read-only)
 
 group:

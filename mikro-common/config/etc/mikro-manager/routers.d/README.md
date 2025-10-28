@@ -1,3 +1,11 @@
+<!--
+README.md : MikroTik management tools
+
+Copyright (c) 2025 Tim Hosking
+Website: https://github.com/munger
+Licence: MIT
+-->
+
 # Router Configuration Directory
 
 This directory contains router connection definitions for mikro-manager.

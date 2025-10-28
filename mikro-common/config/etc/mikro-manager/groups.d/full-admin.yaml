@@ -1,3 +1,11 @@
+#
+# full-admin.yaml : MikroTik management tools
+#
+# Copyright (c) 2025 Tim Hosking
+# Website: https://github.com/munger
+# Licence: MIT
+#
+
 # Full administrative access group
 
 group:
