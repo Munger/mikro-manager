@@ -1,0 +1,7 @@
+# DNS management group
+
+group:
+  name: dns-admin
+  description: "DNS management"
+  modules: [dns]
+  default_access: read-write

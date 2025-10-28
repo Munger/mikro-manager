@@ -1,0 +1,7 @@
+# Full administrative access group
+
+group:
+  name: full-admin
+  description: "Full administrative access to all modules"
+  modules: "*"
+  default_access: read-write

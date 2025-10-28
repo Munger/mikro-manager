@@ -1,0 +1,4 @@
+config/etc/mikro-manager/modules.d/* etc/mikro-manager/modules.d/
+config/etc/mikro-manager/groups.d/* etc/mikro-manager/groups.d/
+config/etc/mikro-manager/users.d/* etc/mikro-manager/users.d/
+config/etc/mikro-manager/routers.d/* etc/mikro-manager/routers.d/

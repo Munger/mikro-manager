@@ -1,0 +1,7 @@
+# Monitoring group (read-only)
+
+group:
+  name: monitor
+  description: "Read-only monitoring"
+  modules: [resources, logs, netwatch, torch, health, watchdog, sniffer, graphing]
+  default_access: read

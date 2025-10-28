@@ -1,0 +1,21 @@
+Source: mikro-common
+Section: python
+Priority: optional
+Maintainer: Tim Hosking
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python3-all,
+               python3-setuptools
+Standards-Version: 4.6.0
+Homepage: https://github.com/munger/mikro-manager
+
+Package: mikro-common
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends},
+         python3-librouteros (>= 3.1.0),
+         python3-yaml (>= 6.0)
+Description: Shared library for MikroTik RouterOS API access
+ Mikro Common provides a shared library for managing MikroTik routers
+ via the RouterOS API. It includes connection management, configuration
+ file handling, and common utilities used by other mikro-manager tools.

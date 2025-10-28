@@ -1,0 +1,11 @@
+# Example Router Configuration
+# Copy this file and customize for your routers
+# The first router (00-*.yaml) is the default
+
+router:
+  name: my-router
+  host: router.example.com
+  port: 8728
+  username: api-user
+  password: your-secure-password
+  use_ssl: false

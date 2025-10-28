@@ -1,0 +1,27 @@
+Source: mikro-dns
+Section: python
+Priority: optional
+Maintainer: Tim Hosking
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python3-all,
+               python3-setuptools,
+               mikro-common (>= 0.1.0)
+Standards-Version: 4.6.0
+Homepage: https://github.com/munger/mikro-manager
+
+Package: mikro-dns
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends},
+         mikro-common (>= 0.1.0)
+Description: DNS static entry management for MikroTik routers
+ Mikro DNS provides comprehensive DNS management for MikroTik routers
+ via the RouterOS API. Features include:
+  * List, add, update, delete DNS entries
+  * Support for all record types (A, AAAA, CNAME, MX, TXT, NS, SRV, etc.)
+  * Search with wildcards
+  * Enable/disable entries
+  * Validate for conflicts
+  * Import/export (JSON/CSV)
+  * Auto-register servers

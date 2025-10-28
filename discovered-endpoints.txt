@@ -1,0 +1,41 @@
+Probing router for available API endpoints...
+This may take a minute...
+
+Testing 122 known RouterOS API paths...
+  Progress: 0/122 paths tested...Traceback (most recent call last):
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/bin/mikro-api-utils", line 7, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/tim/Development/GitHub/mikro-manager/mikro-api-utils/mikro_api_utils/cli.py", line 310, in main
+    cmd_list_endpoints(args, client)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/tim/Development/GitHub/mikro-manager/mikro-api-utils/mikro_api_utils/cli.py", line 207, in cmd_list_endpoints
+    all_tree = explore_api_tree(client, paths)
+  File "/Users/tim/Development/GitHub/mikro-manager/mikro-api-utils/mikro_api_utils/cli.py", line 30, in explore_api_tree
+    result = tuple(api.path(path))
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/api.py", line 107, in __iter__
+    yield from self("print")
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/api.py", line 110, in __call__
+    yield from self.api(
+    ...<2 lines>...
+    )
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/api.py", line 36, in __call__
+    yield from self.readResponse()
+               ~~~~~~~~~~~~~~~~~^^
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/api.py", line 68, in readResponse
+    reply_word, words = self.readSentence()
+                        ~~~~~~~~~~~~~~~~~^^
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/api.py", line 54, in readSentence
+    reply_word, words = self.protocol.readSentence()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/protocol.py", line 185, in readSentence
+    sentence = tuple(word for word in iter(self.readWord, ""))
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/protocol.py", line 185, in <genexpr>
+    sentence = tuple(word for word in iter(self.readWord, ""))
+                                      ~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/protocol.py", line 194, in readWord
+    byte = self.transport.read(1)
+  File "/Users/tim/Development/GitHub/mikro-manager/venv/lib/python3.13/site-packages/librouteros/connections.py", line 26, in read
+    data += self.sock.recv((length - len(data)))
+            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

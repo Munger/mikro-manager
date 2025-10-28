@@ -1,0 +1,219 @@
+.TH MIKRO-DNS 1 "2025" "mikro-manager 0.1.0" "User Commands"
+.SH NAME
+mikro-dns \- DNS static entry management for MikroTik routers
+.SH SYNOPSIS
+.B mikro-dns
+[\fB\-r\fR \fIROUTER\fR] [\fB\-c\fR \fICONFIG\fR] \fICOMMAND\fR [\fIARGS\fR]
+.SH DESCRIPTION
+.B mikro-dns
+manages DNS static entries on MikroTik routers via the RouterOS API. It provides commands to list, add, update, delete, search, enable, disable, validate, and import/export DNS entries.
+.PP
+Access control is enforced through user permissions defined in
+.IR /etc/mikro-manager/users.d/ .
+Users must have
+.B dns:read
+permission for read operations or
+.B dns:write
+permission for write operations.
+.SH OPTIONS
+.TP
+.BR \-r ", " \-\-router " " \fIROUTER\fR
+Specify which router to connect to (by name from config). If not specified, uses the first router found.
+.TP
+.BR \-c ", " \-\-config " " \fICONFIG\fR
+Specify alternate config directory path. Default:
+.IR /etc/mikro-manager
+.SH COMMANDS
+.SS List Operations
+.TP
+.B list
+List all DNS static entries with their addresses, TTL, and comments.
+.SS Add/Update Operations
+.TP
+.B add \fINAME\fR \fIADDRESS\fR [\fIOPTIONS\fR]
+Add a new DNS entry. Fails if entry already exists.
+.RS
+.TP
+.B \-\-ttl \fITTL\fR
+Time to live (default: 1d). Examples: 1h, 30m, 1d, 1w
+.TP
+.B \-\-comment \fICOMMENT\fR
+Optional comment for the entry
+.RE
+.TP
+.B update \fINAME\fR [\fIOPTIONS\fR]
+Update an existing DNS entry. Fails if entry doesn't exist.
+.RS
+.TP
+.B \-\-address \fIADDRESS\fR
+New IP address
+.TP
+.B \-\-ttl \fITTL\fR
+New time to live
+.TP
+.B \-\-comment \fICOMMENT\fR
+New comment
+.RE
+.SS Delete Operations
+.TP
+.B delete \fINAME\fR
+Delete a DNS entry by name.
+.SS Search Operations
+.TP
+.B search \fIPATTERN\fR
+Search for DNS entries matching a pattern. Supports wildcards (* and ?).
+Searches both name and address fields.
+.SS Enable/Disable Operations
+.TP
+.B enable \fINAME\fR
+Enable a disabled DNS entry without deleting it.
+.TP
+.B disable \fINAME\fR
+Disable a DNS entry without deleting it. Disabled entries remain in the configuration but are not active.
+.SS Validation Operations
+.TP
+.B validate
+Check DNS entries for duplicates and conflicts. Reports:
+.RS
+.IP \(bu 2
+Duplicate names (same name, multiple entries)
+.IP \(bu 2
+IP conflicts (same IP, different names)
+.RE
+.SS Import/Export Operations
+.TP
+.B export [\fIOPTIONS\fR]
+Export DNS entries to JSON or CSV format.
+.RS
+.TP
+.B \-\-format \fIFORMAT\fR
+Export format: json or csv (default: json)
+.TP
+.B \-o, \-\-output \fIFILE\fR
+Output file (default: stdout)
+.RE
+.TP
+.B import [\fIOPTIONS\fR]
+Import DNS entries from JSON or CSV format.
+.RS
+.TP
+.B \-\-format \fIFORMAT\fR
+Import format: json or csv (default: json)
+.TP
+.B \-f, \-\-file \fIFILE\fR
+Input file (default: stdin)
+.TP
+.B \-\-overwrite
+Overwrite existing entries. Without this flag, existing entries are skipped.
+.RE
+.SH FILES
+.TP
+.I /etc/mikro-manager/routers.d/*.yaml
+Router connection configurations. See
+.BR mikro-manager (5)
+for format details.
+.TP
+.I /etc/mikro-manager/users.d/*.yaml
+User permission definitions. Users must have
+.B dns:read
+or
+.B dns:write
+permissions.
+.TP
+.I /etc/mikro-manager/groups.d/*.yaml
+Group permission definitions.
+.SH EXAMPLES
+.SS List all DNS entries
+.nf
+mikro-dns list
+.fi
+.SS Add a DNS entry
+.nf
+mikro-dns add server.local 192.168.1.100
+mikro-dns add server.local 192.168.1.100 --ttl 1h --comment "Production server"
+.fi
+.SS Update a DNS entry
+.nf
+mikro-dns update server.local --address 192.168.1.101
+mikro-dns update server.local --ttl 2d --comment "Updated comment"
+.fi
+.SS Delete a DNS entry
+.nf
+mikro-dns delete server.local
+.fi
+.SS Search for entries
+.nf
+# Search by name pattern
+mikro-dns search "*.local"
+mikro-dns search "server*"
+
+# Search by IP pattern
+mikro-dns search "192.168.1.*"
+.fi
+.SS Enable/Disable entries
+.nf
+# Disable entry without deleting
+mikro-dns disable server.local
+
+# Re-enable entry
+mikro-dns enable server.local
+.fi
+.SS Validate entries
+.nf
+mikro-dns validate
+.fi
+.SS Export/Import entries
+.nf
+# Export to JSON
+mikro-dns export --format json -o dns-backup.json
+
+# Export to CSV
+mikro-dns export --format csv -o dns-backup.csv
+
+# Import from file
+mikro-dns import --file dns-backup.json
+
+# Import and overwrite existing entries
+mikro-dns import --file dns-backup.json --overwrite
+
+# Import from stdin
+cat dns-backup.json | mikro-dns import
+.fi
+.SS Use specific router
+.nf
+mikro-dns -r remote-site list
+.fi
+.SH EXIT STATUS
+.TP
+.B 0
+Success
+.TP
+.B 1
+Error (permission denied, connection failed, entry not found, etc.)
+.SH PERMISSIONS
+Access to
+.B mikro-dns
+is controlled through the user permission system. Users must be defined in
+.I /etc/mikro-manager/users.d/
+with appropriate group memberships.
+.PP
+Required permissions:
+.TP
+.B dns:read
+List, search, validate, and export operations
+.TP
+.B dns:write
+Add, update, delete, enable, disable, and import operations
+.PP
+Root users and users with the
+.B full-admin
+group have unrestricted access.
+.SH SEE ALSO
+.BR mikro-manager (1),
+.BR mikro-manager (5)
+.PP
+Project homepage: https://github.com/munger/mikro-manager
+.SH AUTHOR
+Tim Hosking
+.SH COPYRIGHT
+Copyright \(co 2025 Tim Hosking. License: MIT

@@ -1,0 +1,9 @@
+# Default root user with full administrative access
+# DO NOT REMOVE THIS FILE
+
+user:
+  username: root
+  permissions:
+    - groups: [full-admin]
+      routers: "*"
+  comment: "System administrator"

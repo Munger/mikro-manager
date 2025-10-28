@@ -1,0 +1,19 @@
+module:
+  name: ip-services
+  description: IP Services (DNS, NTP, etc.)
+  category: network
+  permissions:
+    # DNS Management
+    - name: dns:read
+      description: View DNS static entries
+      operations:
+        - /ip/dns/static/print
+        
+    - name: dns:write
+      description: Manage DNS static entries
+      operations:
+        - /ip/dns/static/add
+        - /ip/dns/static/set
+        - /ip/dns/static/remove
+        - /ip/dns/static/enable
+        - /ip/dns/static/disable

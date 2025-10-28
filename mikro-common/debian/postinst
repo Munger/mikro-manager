@@ -1,0 +1,52 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    configure)
+        # Create mikro-admin group if it doesn't exist
+        if ! getent group mikro-admin >/dev/null; then
+            addgroup --system mikro-admin
+            echo "Created mikro-admin group"
+        fi
+        
+        # Create config directory structure
+        mkdir -p /etc/mikro-manager/modules.d
+        mkdir -p /etc/mikro-manager/groups.d
+        mkdir -p /etc/mikro-manager/users.d
+        mkdir -p /etc/mikro-manager/routers.d
+        
+        # Set ownership and permissions on directories
+        chown -R root:mikro-admin /etc/mikro-manager
+        chmod 750 /etc/mikro-manager
+        chmod 750 /etc/mikro-manager/modules.d
+        chmod 750 /etc/mikro-manager/groups.d
+        chmod 750 /etc/mikro-manager/users.d
+        chmod 750 /etc/mikro-manager/routers.d
+        
+        # Set permissions on all config files (group-readable only)
+        # Note: Admins should set user-specific group ownership for users.d and routers.d files
+        for dir in modules.d groups.d users.d routers.d; do
+            if [ -d /etc/mikro-manager/$dir ]; then
+                find /etc/mikro-manager/$dir -type f -name "*.yaml" -exec chown root:mikro-admin {} \;
+                find /etc/mikro-manager/$dir -type f -name "*.yaml" -exec chmod 640 {} \;
+            fi
+        done
+        
+        echo ""
+        echo "mikro-common installed successfully!"
+        echo ""
+        echo "Configuration structure:"
+        echo "  /etc/mikro-manager/routers.d/  - Router connections"
+        echo "  /etc/mikro-manager/modules.d/  - Module definitions"
+        echo "  /etc/mikro-manager/groups.d/   - Permission groups"
+        echo "  /etc/mikro-manager/users.d/    - User permissions"
+        echo ""
+        echo "To grant a user access to manage routers:"
+        echo "  sudo usermod -aG mikro-admin USERNAME"
+        echo ""
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0
